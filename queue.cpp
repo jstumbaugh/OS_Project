@@ -39,7 +39,7 @@ Queue::Queue(string n, vector<PCB> arr) {
 void Queue::print() {
     cout << "Contents of the " << name << " Queue:\n";
     for (int i=0; i<queue.size(); i++) {
-      cout << "Position:  [" << i << "]\n";
+      cout << "Position:    [" << i << "]\n";
       queue[i].print();
     }
     cout << "End contents of the " << name << " Queue.\n\n";

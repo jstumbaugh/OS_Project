@@ -38,6 +38,7 @@ PCB::PCB(int id, int p, string st, string pc) {
     priority = p;
     state = st;
     program_counter = pc;
+    cout << "Process " << id << " Created\n";
 }
 
 // this method will print the contents of the PCB
