@@ -22,6 +22,8 @@ class Queue {
     void push(PCB,int);
     void delete_pos(int);
     void delete_PCB(int);
+    int length();
+    PCB& operator[](int);
   private:
     deque<PCB> queue;
     string name;
@@ -83,4 +85,12 @@ void Queue::delete_PCB(int pid) {
             return;
         }
     }
+}
+
+int Queue::length() {
+    return queue.size();
+}
+
+PCB& Queue::operator[](int i) {
+    return queue[i];
 }

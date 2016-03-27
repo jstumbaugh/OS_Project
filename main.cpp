@@ -9,6 +9,7 @@
 #import <sstream>
 #import "PCB.cpp"
 #import "queue.cpp"
+#import "scheduler.cpp"
 
 using namespace std;
 
@@ -103,13 +104,13 @@ int main() {
     Queue waiting_queue("Waiting", waiting);
     Queue running_queue("Running", running);
     Queue terminated_queue("terminated", terminated);
-    // Print contents of queues
-    ready_queue.print();
-    waiting_queue.print();
-    // running_queue.print();
-    // terminated_queue.print();
 
-
+    double sjf_wait = sjf_scheduler(ready_queue,waiting_queue);
+    cout << "Shortest Job First Scheduler average wait time:   " << sjf_wait << endl;
+    double pri_wait = priority_scheduler(ready_queue, waiting_queue);
+    cout << "Priority Scheduler average wait time:             " << pri_wait << endl;
+    double rr_wait = rr_scheduler(ready_queue, waiting_queue, 4);
+    cout << "Round Robin Scheduler average wait time:          " << rr_wait << endl;
 
     return 0;
 }

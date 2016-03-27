@@ -92,5 +92,5 @@ int PCB::get_job_time() {
 }
 
 void PCB::set_job_time(int j) {
-    job_time = j;
+    j < 0 ? job_time = 0 : job_time = j;
 }
