@@ -26,7 +26,7 @@ int main() {
 
     if (mode == 1) { // Manually Enter Processes
         cout << "\nManual Mode selected. Please enter in the processes:\n";
-        int pid, priority;
+        int pid, priority, job_time;
         string state, program_counter;
         char entering_processes = 'y';
         while (entering_processes == 'y') {
@@ -42,7 +42,9 @@ int main() {
             }
             cout << "Program Counter: ";
             cin >> program_counter;
-            PCB pcb(pid, priority, state, program_counter);
+            cout << "Job Time: ";
+            cin >> job_time;
+            PCB pcb(pid, priority, state, program_counter, job_time);
 
             // move PCB into correct queue
             if (pcb.get_state() == "ready") {
@@ -104,8 +106,8 @@ int main() {
     // Print contents of queues
     ready_queue.print();
     waiting_queue.print();
-    running_queue.print();
-    terminated_queue.print();
+    // running_queue.print();
+    // terminated_queue.print();
 
 
 

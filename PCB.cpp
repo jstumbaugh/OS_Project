@@ -11,7 +11,7 @@ using namespace std;
 class PCB {
   public:
     PCB();
-    PCB(int, int, string, string);
+    PCB(int, int, string, string, int);
     void print();
     // getters and setters
     int get_pid ();
@@ -22,9 +22,12 @@ class PCB {
     void set_state (string);
     string get_PC ();
     void set_PC (string);
+    int get_job_time();
+    void set_job_time(int);
   private:
     int pid;
     int priority;
+    int job_time;
     string state;
     string program_counter;
 };
@@ -33,11 +36,12 @@ class PCB {
 PCB::PCB() {}
 
 // Normal constructor
-PCB::PCB(int id, int p, string st, string pc) {
+PCB::PCB(int id, int p, string st, string pc, int j=0) {
     pid = id;
     priority = p;
     state = st;
     program_counter = pc;
+    j == 0 ? job_time = rand() % 20 + 1 : job_time = j;
     cout << "Process " << id << " Created\n";
 }
 
@@ -46,7 +50,8 @@ void PCB::print() {
     cout << "  PID:       " << pid << endl;
     cout << "  Priority:  " << priority << endl;
     cout << "  State:     " << state << endl;
-    cout << "  PC:        " << program_counter << endl << endl;
+    cout << "  PC:        " << program_counter << endl;
+    cout << "  Job Time:  " << job_time << endl;
 }
 
 // Basic getters and setters for the attributes
@@ -80,4 +85,12 @@ string PCB::get_PC() {
 
 void PCB::set_PC(string pc) {
     program_counter = pc;
+}
+
+int PCB::get_job_time() {
+    return job_time;
+}
+
+void PCB::set_job_time(int j) {
+    job_time = j;
 }

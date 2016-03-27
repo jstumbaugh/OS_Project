@@ -1,10 +1,10 @@
 // Layout:
 // ID Priority State ProgramCounter
-1 1 ready #1
-2 1 ready #12
-3 1 waiting #1234
-4 1 waiting #12345
-5 1 running #123456
-6 1 running #1234567
-7 1 terminated #12345678
-8 1 terminated #123456789
+1 1 ready 0x1
+2 1 ready 0x12
+3 1 ready 0x123
+4 1 ready 0x1234
+5 1 waiting 0x12345
+6 1 waiting 0x123456
+7 1 waiting 0x1234567
+8 1 waiting 0x12345678
