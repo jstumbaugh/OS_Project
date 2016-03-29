@@ -7,6 +7,7 @@
 #import <vector>
 #import <fstream>
 #import <sstream>
+#import <regex>
 #import "PCB.cpp"
 #import "queue.cpp"
 #import "scheduler.cpp"
@@ -80,29 +81,35 @@ int main() {
             while (getline(file, line)) {
                 if (line.at(0) == '/') { // ignore comments
                     continue;
-                } else {
-                    stringstream ss(line);
-                    int pid, priority, job_time;
-                    string state, program_counter;
-                    ss >> pid;
-                    ss >> priority;
-                    ss >> state;
-                    ss >> program_counter;
-                    if (ss >> job_time)
-                        cout << "";
-                    else
-                        job_time = 0;
-                    PCB pcb(pid, priority, state, program_counter, job_time);
-                    // move PCB into correct queue
-                    if (pcb.get_state() == "ready") {
-                        ready.push_back(pcb);
-                    } else if (pcb.get_state() == "waiting") {
-                        waiting.push_back(pcb);
-                    } else if (pcb.get_state() == "running") {
-                        running.push_back(pcb);
-                    } else if (pcb.get_state() == "terminated") {
-                        terminated.push_back(pcb);
-                    }
+                }
+
+                stringstream ss(line);
+                string pid, priority, job_time, state, program_counter;
+                ss >> pid;
+                ss >> priority;
+                ss >> state;
+                ss >> program_counter;
+                if (ss >> job_time)
+                    cout << "";
+                else
+                    job_time = "0";
+                // remove possible comments from inputs
+                regex regex(",");
+                pid = regex_replace(pid, regex, "");
+                priority = regex_replace(priority, regex, "");
+                job_time = regex_replace(job_time, regex, "");
+                state = regex_replace(state, regex, "");
+                program_counter = regex_replace(program_counter, regex, "");
+                PCB pcb(stoi(pid), stoi(priority), state, program_counter, stoi(job_time));
+                // move PCB into correct queue
+                if (pcb.get_state() == "ready") {
+                    ready.push_back(pcb);
+                } else if (pcb.get_state() == "waiting") {
+                    waiting.push_back(pcb);
+                } else if (pcb.get_state() == "running") {
+                    running.push_back(pcb);
+                } else if (pcb.get_state() == "terminated") {
+                    terminated.push_back(pcb);
                 }
             }
         } else {

@@ -1,10 +1,10 @@
 // Layout:
-// ID Priority State ProgramCounter JobTime(optional)
-1 4 ready 0x1234
-2 3 ready 0x2345
-3 3 ready 0x3456
-4 2 ready 0x4567
-5 1 ready 0x5678
-6 1 ready 0x6789
-7 1 ready 0x7890
-8 1 ready 0x8901
+// ID, Priority, State, ProgramCounter, JobTime(optional)
+1, 4, ready, 0x1234, 20
+2, 3, ready, 0x2345
+3, 3, ready, 0x3456
+4, 2, ready, 0x4567
+5, 1, ready, 0x5678
+6, 1, ready, 0x6789
+7, 1, ready, 0x7890
+8, 1, ready, 0x8901
