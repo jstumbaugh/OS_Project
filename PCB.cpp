@@ -42,7 +42,6 @@ PCB::PCB(int id, int p, string st, string pc, int j=0) {
     state = st;
     program_counter = pc;
     j == 0 ? job_time = rand() % 20 + 1 : job_time = j;
-    cout << "Process " << id << " Created\n";
 }
 
 // this method will print the contents of the PCB

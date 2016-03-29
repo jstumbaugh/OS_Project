@@ -24,6 +24,7 @@ class Queue {
     void delete_PCB(int);
     int length();
     PCB& operator[](int);
+    string get_name();
   private:
     deque<PCB> queue;
     string name;
@@ -34,7 +35,10 @@ Queue::Queue() {}
 // constructor that adds all the PCBs to the queue
 Queue::Queue(string n, vector<PCB> arr) {
     name = n;
-    for (int i=0; i < arr.size(); i++) queue.push_back(arr[i]);
+    for (int i=0; i < arr.size(); i++) {
+        queue.push_back(arr[i]);
+        cout << "Added Process " << arr[i].get_pid() << " to the " << n << " queue.\n";
+    }
 }
 
 // This will print the contents of the Queue
@@ -62,6 +66,7 @@ PCB Queue::pop(int pos) {
 
 void Queue::push(PCB pcb) {
     queue.push_back(pcb);
+    cout << "Process " << pcb.get_pid() << " added to the " << get_name() << " queue.\n";
 }
 
 // pushes an element at a specific position 1 = 1st, 2 = 2nd
@@ -70,6 +75,7 @@ void Queue::push(PCB pcb, int pos) {
         pos = queue.size()+1;
     deque<PCB>::iterator it = queue.begin()+pos-1;
     queue.insert(it, pcb);
+    cout << "Process " << pcb.get_pid() << " added to the " << get_name() << " queue.\n";
 }
 
 // this method will delete the PCB at a given position
@@ -86,6 +92,7 @@ void Queue::delete_PCB(int pid) {
         p = queue[i];
         if (p.get_pid() == pid) {
             delete_pos(i+1);
+            cout << "Process " << p.get_pid() << " deleted to the " << get_name() << " queue.\n";
             return;
         }
     }
@@ -97,4 +104,8 @@ int Queue::length() {
 
 PCB& Queue::operator[](int i) {
     return queue[i];
+}
+
+string Queue::get_name() {
+    return name;
 }

@@ -3,43 +3,70 @@
  * main.cpp
  */
 
-#import <iostream>
-#import <vector>
-#import <fstream>
-#import <sstream>
-#import <regex>
-#import "PCB.cpp"
-#import "queue.cpp"
-#import "scheduler.cpp"
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <sstream>
+#include <regex>
+#include <ctype.h>
+#include "PCB.cpp"
+#include "queue.cpp"
+#include "scheduler.cpp"
 
 using namespace std;
 
+bool is_int(string word) {
+    bool is_number = true;
+    for(string::const_iterator k = word.begin(); k != word.end(); ++k)
+        is_number &= isdigit(*k);
+    return is_number;
+}
+
 // Prompt user for process information
 PCB enter_process_info(string state="0") {
-    int pid, priority, job_time;
-    string program_counter;
-    cout << "Process ID: ";
-    cin >> pid;
-    cout << "Priority: ";
-    cin >> priority;
+    string pid, priority, job_time, program_counter = "a";
+    while (true) {
+        cout << "Process ID (integer): ";
+        cin >> pid;
+        if (is_int(pid))
+            break;
+    }
+    while (true) {
+        cout << "Priority (integer): ";
+        cin >> priority;
+        if (is_int(priority))
+            break;
+    }
     if (state == "0") {
-        cout << "State (ready, waiting, running, terminated): ";
-        cin >> state;
+        while (state != "ready" && state != "waiting" && state != "running" && state != "terminated") {
+            cout << "State (ready, waiting, running, terminated): ";
+            cin >> state;
+        }
     }
     cout << "Program Counter Address: ";
     cin >> program_counter;
-    cout << "Job Time: ";
-    cin >> job_time;
-    PCB pcb(pid, priority, state, program_counter, job_time);
+    while (true) {
+        cout << "Job Time (integer): ";
+        cin >> job_time;
+        if (is_int(job_time))
+            break;
+    }
+    PCB pcb(stoi(pid), stoi(priority), state, program_counter, stoi(job_time));
     return pcb;
 }
 
 // The main worked method of the operating system
 int main() {
-    cout << "CSE 7343: Operating Systems Project\nJason Stumbaugh\n";
-    int mode = 0;
-    while (mode != 1 && mode != 2) {
-        cout << "\nManually Enter Processes:          1\nRead Processes in from text file:  2\nPlease pick a mode: ";
+    cout << "\n==========================================================\n";
+    cout << "|          CSE 7343: Operating Systems Project           |\n";
+    cout << "|                     Jason Stumbaugh                    |\n";
+    cout << "==========================================================\n";
+    int mode = -1;
+    while (mode != 1 && mode != 2 && mode != 0) {
+        cout << "\nPlease select an option:\n";
+        cout << "   1  -  Manually Enter Processes.\n";
+        cout << "   2  -  Read Processes in from text file.\n";
+        cout << "   0  -  Exit Operating System.\n> ";
         cin >> mode;
     }
     vector<PCB> ready;
@@ -68,7 +95,7 @@ int main() {
             cin >> entering_processes;
         }
     } else if (mode == 2) { // Read processes from text file
-        cout << "Please enter the name of .txt file to read processes from: ";
+        cout << "\nPlease enter the name of .txt file to read processes from: ";
         // string file_name;
         // cin >> file_name;
         string file_name = "test.txt";
@@ -116,6 +143,9 @@ int main() {
             cerr << "Error opening " << file_name << endl;
             exit(1);
         }
+    } else if (mode == 0) {
+        cout << "Quitting Operating System. Have a good day.\n";
+        exit(1);
     }
 
     // create queues based on processes
@@ -127,17 +157,17 @@ int main() {
     bool using_os = true;
     while (using_os) {
         cout << "\nPlease select an option:\n";
-        cout << "   1  - Print contents of Ready Queue.\n";
-        cout << "   2  - Print contents of Waiting Queue.\n";
-        // cout << "   3  - Print contents of Running Queue.\n";
-        // cout << "   4  - Print contents of Terminated Queue.\n";
-        cout << "   3  - Run the Shortest Job First Scheduler on the Ready queue.\n";
-        cout << "   4  - Run the Priority Scheduler on the Ready queue.\n";
-        cout << "   5  - Run the Round Robin Scheduler on the Ready queue.\n";
-        cout << "   6  - Run all of the schedulers on the Ready queue.\n";
-        cout << "   7  - Add PCB to a given queue.\n";
-        cout << "   8  - Delete PCB from given queue.\n";
-        cout << "   0  - Exit Operating System.\n";
+        cout << "   1  -  Print contents of Ready Queue.\n";
+        cout << "   2  -  Print contents of Waiting Queue.\n";
+        // cout << "   3  -  Print contents of Running Queue.\n";
+        // cout << "   4  -  Print contents of Terminated Queue.\n";
+        cout << "   3  -  Run the Shortest Job First Scheduler on the Ready queue.\n";
+        cout << "   4  -  Run the Priority Scheduler on the Ready queue.\n";
+        cout << "   5  -  Run the Round Robin Scheduler on the Ready queue.\n";
+        cout << "   6  -  Run all of the schedulers on the Ready queue.\n";
+        cout << "   7  -  Add PCB to a given queue.\n";
+        cout << "   8  -  Delete PCB from given queue.\n";
+        cout << "   0  -  Exit Operating System.\n";
 
         int input;
         cout << "> ";
@@ -172,14 +202,12 @@ int main() {
                             cout << "Please enter the position you would like to add the PCB in the ready queue: ";
                             cin >> q;
                             ready_queue.push(pcb,q);
-                            cout << "PCB added to the Ready queue.\n";
                             break;
                         } else if (queue_selected == "waiting") {
                             pcb = enter_process_info("waiting");
                             cout << "Please enter the position you would like to add the PCB in the waiting queue: ";
                             cin >> q;
                             waiting_queue.push(pcb,q);
-                            cout << "PCB added to the Waiting queue.\n";
                             break;
                         } else {
                             cout << "Invalid queue name\n";
@@ -193,14 +221,12 @@ int main() {
                             cout << "\nPlease enter the PID of the process you wish to delete: ";
                             cin >> q;
                             ready_queue.delete_PCB(q);
-                            cout << "PCB " << q << " deleted.\n";
                             break;
                         } else if (queue_selected == "waiting") {
                             waiting_queue.print();
                             cout << "\nPlease enter the PID of the process you wish to delete: ";
                             cin >> q;
                             waiting_queue.delete_PCB(q);
-                            cout << "PCB " << q << " deleted.\n";
                             break;
                         } else {
                             cout << "Invaild queue name.\n";
