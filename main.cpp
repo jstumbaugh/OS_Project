@@ -119,7 +119,7 @@ int main() {
 
     bool using_os = true;
     while (using_os) {
-        cout << "\nQueues created. Please select an option:\n";
+        cout << "\nPlease select an option:\n";
         cout << "   1  - Print contents of Ready Queue.\n";
         cout << "   2  - Print contents of Waiting Queue.\n";
         // cout << "   3  - Print contents of Running Queue.\n";
@@ -129,6 +129,7 @@ int main() {
         cout << "   5  - Run the Round Robin Scheduler on the Ready queue.\n";
         cout << "   6  - Run all of the schedulers on the Ready queue.\n";
         cout << "   7  - Add PCB to a given queue.\n";
+        cout << "   8  - Delete PCB from given queue.\n";
         cout << "   0  - Exit Operating System.\n";
 
         int input;
@@ -136,7 +137,7 @@ int main() {
         cin >> input;
         cout << endl;
         int q;
-        string queue_to_add_to;
+        string queue_selected;
         PCB pcb;
         switch(input) {
             case 1 :    ready_queue.print();
@@ -158,15 +159,15 @@ int main() {
                         cout << "Round Robin Scheduler average wait time:           " << rr_scheduler(ready_queue, waiting_queue, q) << endl;
                         break;
             case 7 :    cout << "Add PCB to which queue? (ready, waiting): ";
-                        cin >> queue_to_add_to;
-                        if (queue_to_add_to == "ready") {
+                        cin >> queue_selected;
+                        if (queue_selected == "ready") {
                             pcb = enter_process_info("ready");
                             cout << "Please enter the position you would like to add the PCB in the ready queue: ";
                             cin >> q;
                             ready_queue.push(pcb,q);
                             cout << "PCB added to the Ready queue.\n";
                             break;
-                        } else if (queue_to_add_to == "waiting") {
+                        } else if (queue_selected == "waiting") {
                             pcb = enter_process_info("waiting");
                             cout << "Please enter the position you would like to add the PCB in the waiting queue: ";
                             cin >> q;
@@ -174,13 +175,34 @@ int main() {
                             cout << "PCB added to the Waiting queue.\n";
                             break;
                         } else {
-                            cout << "Please enter in a vaild queue name (ready, waiting)";
+                            cout << "Invalid queue name\n";
+                            break;
+                        }
+                        break;
+            case 8 :    cout << "Delete PCB from which queue? (ready, waiting): ";
+                        cin >> queue_selected;
+                        if (queue_selected == "ready") {
+                            ready_queue.print();
+                            cout << "\nPlease enter the PID of the process you wish to delete: ";
+                            cin >> q;
+                            ready_queue.delete_PCB(q);
+                            cout << "PCB " << q << " deleted.\n";
+                            break;
+                        } else if (queue_selected == "waiting") {
+                            waiting_queue.print();
+                            cout << "\nPlease enter the PID of the process you wish to delete: ";
+                            cin >> q;
+                            waiting_queue.delete_PCB(q);
+                            cout << "PCB " << q << " deleted.\n";
+                            break;
+                        } else {
+                            cout << "Invaild queue name.\n";
                             break;
                         }
                         break;
             case 0 :    using_os = false;
                         break;
-            default :   cout << "Please enter in a valid command.\n";
+            default :   cout << "Please enter in a valid command.\n\n";
                         break;
         }
     }
