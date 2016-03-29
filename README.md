@@ -1,5 +1,8 @@
 # OS_Project
-CSE 7343 Operating Systems Project
 
+## Jason Stumbaugh
+### CSE 7343 Operating Systems Project
 
-job time created randomly (1-20) if not given.
+To compile operating system: `make`
+To run operating system: `./main.exe`
+To delete the executable: `make clean`
