@@ -66,12 +66,16 @@ void Queue::push(PCB pcb) {
 
 // pushes an element at a specific position 1 = 1st, 2 = 2nd
 void Queue::push(PCB pcb, int pos) {
+    if (pos > queue.size())
+        pos = queue.size()+1;
     deque<PCB>::iterator it = queue.begin()+pos-1;
     queue.insert(it, pcb);
 }
 
 // this method will delete the PCB at a given position
 void Queue::delete_pos(int pos) {
+    if (pos > queue.size())
+        pos = queue.size()+1;
     PCB p = pop(pos);
 }
 
