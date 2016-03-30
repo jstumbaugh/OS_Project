@@ -1,5 +1,5 @@
-// Layout:
-// ID, Priority, State, ProgramCounter, JobTime(optional)
+# Layout:
+# ID, Priority, State, ProgramCounter, Job Time
 1, 1, ready, 0x1234, 15
 2, 1, ready, 0x2345, 13
 3, 2, ready, 0x3456, 5

@@ -108,7 +108,7 @@ int main() {
         if (file.is_open()){
             string line;
             while (getline(file, line)) {
-                if (line.at(0) == '/') { // ignore comments
+                if (line.at(0) == '#') { // ignore comments
                     continue;
                 }
 
