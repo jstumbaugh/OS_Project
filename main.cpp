@@ -98,10 +98,10 @@ int main() {
         }
     } else if (mode == 2) { // Read processes from text file
         cout << "\nPlease enter the name of .txt file to read processes from: ";
-        // string file_name;
-        // cin >> file_name;
-        string file_name = "test.txt";
-        cout << endl;
+        string file_name;
+        cin >> file_name;
+        // string file_name = "test.txt";
+        // cout << endl;
 
         fstream file;
         file.open(file_name);
