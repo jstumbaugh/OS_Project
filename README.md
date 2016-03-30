@@ -78,7 +78,7 @@ Upon selecting the mode where you read in the process information from a text fi
 Lines beginning with a pound sign `#` will be ignored as comments. Each attribute of the PCB can be separated by either a comma or a space. Each line is expected to be a different PCB. See the `test.txt` file as an example.
 
 
-#### Dependancies
+#### Dependencies
 g++
 
 C++11
