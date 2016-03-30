@@ -1,6 +1,6 @@
 ## CSE 7343 Operating Systems Project
-Jason Stumbaugh
-Spring 2016
+##### Jason Stumbaugh
+##### Spring 2016
 
 To download source code: `git clone https://github.com/jstumbaugh/OS_project.git`
 
@@ -72,4 +72,5 @@ Three schedulers are implemented in this operating system: Shortest Job First, P
 
 #### Dependancies
 g++
+
 C++11
