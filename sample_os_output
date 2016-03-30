@@ -1,0 +1,439 @@
+Last login: Tue Mar 29 20:27:20 on ttys000
+
+Jasons-Macbook:  ~ 
+→ cd Documents/SMU/Senior\ Year/Spring\ Semester\ 2016/Operating\ Systems/OS_Project/
+
+Jasons-Macbook:  ~/Documents/SMU/Senior Year/Spring Semester 2016/Operating Systems/OS_Project  |master ✓|
+→ make
+g++ main.cpp -std=c++11 -o os.exe
+
+Jasons-Macbook:  ~/Documents/SMU/Senior Year/Spring Semester 2016/Operating Systems/OS_Project  |master ✓|
+→ ./os.exe 
+
+===========================================================
+|           CSE 7343: Operating Systems Project           |
+|                     Jason Stumbaugh                     |
+===========================================================
+
+Please select an option:
+   1  -  Manually Enter Processes.
+   2  -  Read Processes in from text file.
+   0  -  Exit Operating System.
+> 2
+
+Please enter the name of .txt file to read processes from: test.txt
+Added Process 1 to the Ready queue.
+Added Process 2 to the Ready queue.
+Added Process 3 to the Ready queue.
+Added Process 4 to the Ready queue.
+Added Process 5 to the Ready queue.
+Added Process 6 to the Ready queue.
+Added Process 7 to the Ready queue.
+Added Process 8 to the Ready queue.
+Added Process 9 to the Waiting queue.
+Added Process 10 to the Waiting queue.
+Added Process 11 to the Waiting queue.
+Added Process 12 to the Waiting queue.
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 1
+
+Contents of the Ready Queue:
+Position:    [1]
+  PID:       1
+  Priority:  1
+  State:     ready
+  PC:        0x1234
+  Job Time:  15
+Position:    [2]
+  PID:       2
+  Priority:  1
+  State:     ready
+  PC:        0x2345
+  Job Time:  13
+Position:    [3]
+  PID:       3
+  Priority:  2
+  State:     ready
+  PC:        0x3456
+  Job Time:  5
+Position:    [4]
+  PID:       4
+  Priority:  2
+  State:     ready
+  PC:        0x4567
+  Job Time:  11
+Position:    [5]
+  PID:       5
+  Priority:  3
+  State:     ready
+  PC:        0x5678
+  Job Time:  9
+Position:    [6]
+  PID:       6
+  Priority:  3
+  State:     ready
+  PC:        0x6789
+  Job Time:  3
+Position:    [7]
+  PID:       7
+  Priority:  4
+  State:     ready
+  PC:        0x7890
+  Job Time:  19
+Position:    [8]
+  PID:       8
+  Priority:  4
+  State:     ready
+  PC:        0x8901
+  Job Time:  7
+End contents of the Ready Queue.
+
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 2
+
+Contents of the Waiting Queue:
+Position:    [1]
+  PID:       9
+  Priority:  1
+  State:     waiting
+  PC:        0x1234
+  Job Time:  6
+Position:    [2]
+  PID:       10
+  Priority:  2
+  State:     waiting
+  PC:        0x2345
+  Job Time:  10
+Position:    [3]
+  PID:       11
+  Priority:  3
+  State:     waiting
+  PC:        0x3456
+  Job Time:  14
+Position:    [4]
+  PID:       12
+  Priority:  4
+  State:     waiting
+  PC:        0x4567
+  Job Time:  18
+End contents of the Waiting Queue.
+
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 3
+
+
+Running the Shortest Job First Scheduler.
+Process 6 deleted to the Ready queue.
+Process 3 deleted to the Ready queue.
+Process 8 deleted to the Ready queue.
+Process 5 deleted to the Ready queue.
+Process 4 deleted to the Ready queue.
+Process 2 deleted to the Ready queue.
+Process 1 deleted to the Ready queue.
+Process 7 deleted to the Ready queue.
+
+Shortest Job First Scheduler average wait time: 7.875
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 4
+
+
+Running the Priority Scheduler.
+Process 1 deleted to the Ready queue.
+Process 2 deleted to the Ready queue.
+Process 3 deleted to the Ready queue.
+Process 4 deleted to the Ready queue.
+Process 5 deleted to the Ready queue.
+Process 6 deleted to the Ready queue.
+Process 7 deleted to the Ready queue.
+Process 8 deleted to the Ready queue.
+
+Priority Scheduler average wait time: 9.375
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 5
+
+Please enter the Time Quantum to use: 4
+
+Running the Round Robin Scheduler.
+Process 6 deleted to the Ready queue.
+Process 3 deleted to the Ready queue.
+Process 8 deleted to the Ready queue.
+Process 5 deleted to the Ready queue.
+Process 1 deleted to the Ready queue.
+Process 4 deleted to the Ready queue.
+Process 2 deleted to the Ready queue.
+Process 7 deleted to the Ready queue.
+
+Round Robin Scheduler (q = 4) average wait time: 3.41667
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 6
+
+Please enter the Time Quantum to use: 4
+
+Running the Shortest Job First Scheduler.
+Process 6 deleted to the Ready queue.
+Process 3 deleted to the Ready queue.
+Process 8 deleted to the Ready queue.
+Process 5 deleted to the Ready queue.
+Process 4 deleted to the Ready queue.
+Process 2 deleted to the Ready queue.
+Process 1 deleted to the Ready queue.
+Process 7 deleted to the Ready queue.
+
+Running the Priority Scheduler.
+Process 1 deleted to the Ready queue.
+Process 2 deleted to the Ready queue.
+Process 3 deleted to the Ready queue.
+Process 4 deleted to the Ready queue.
+Process 5 deleted to the Ready queue.
+Process 6 deleted to the Ready queue.
+Process 7 deleted to the Ready queue.
+Process 8 deleted to the Ready queue.
+
+Running the Round Robin Scheduler.
+Process 6 deleted to the Ready queue.
+Process 3 deleted to the Ready queue.
+Process 8 deleted to the Ready queue.
+Process 5 deleted to the Ready queue.
+Process 1 deleted to the Ready queue.
+Process 4 deleted to the Ready queue.
+Process 2 deleted to the Ready queue.
+Process 7 deleted to the Ready queue.
+
+
+Results:
+Shortest Job First Scheduler average wait time:    7.875
+Priority Scheduler average wait time:              9.375
+Round Robin Scheduler (q = 4) average wait time:   3.41667
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 7
+
+Add PCB to which queue? (ready, waiting): waiting
+Process ID (integer): 99
+Priority (integer): 1
+Program Counter Address: 0x12345678
+Job Time (integer): 20
+Please enter the position you would like to add the PCB in the waiting queue: 1
+Process 99 added to the Waiting queue.
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 2
+
+Contents of the Waiting Queue:
+Position:    [1]
+  PID:       99
+  Priority:  1
+  State:     waiting
+  PC:        0x12345678
+  Job Time:  20
+Position:    [2]
+  PID:       9
+  Priority:  1
+  State:     waiting
+  PC:        0x1234
+  Job Time:  6
+Position:    [3]
+  PID:       10
+  Priority:  2
+  State:     waiting
+  PC:        0x2345
+  Job Time:  10
+Position:    [4]
+  PID:       11
+  Priority:  3
+  State:     waiting
+  PC:        0x3456
+  Job Time:  14
+Position:    [5]
+  PID:       12
+  Priority:  4
+  State:     waiting
+  PC:        0x4567
+  Job Time:  18
+End contents of the Waiting Queue.
+
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 8
+
+Delete PCB from which queue? (ready, waiting): waiting
+Contents of the Waiting Queue:
+Position:    [1]
+  PID:       99
+  Priority:  1
+  State:     waiting
+  PC:        0x12345678
+  Job Time:  20
+Position:    [2]
+  PID:       9
+  Priority:  1
+  State:     waiting
+  PC:        0x1234
+  Job Time:  6
+Position:    [3]
+  PID:       10
+  Priority:  2
+  State:     waiting
+  PC:        0x2345
+  Job Time:  10
+Position:    [4]
+  PID:       11
+  Priority:  3
+  State:     waiting
+  PC:        0x3456
+  Job Time:  14
+Position:    [5]
+  PID:       12
+  Priority:  4
+  State:     waiting
+  PC:        0x4567
+  Job Time:  18
+End contents of the Waiting Queue.
+
+
+Please enter the PID of the PCB you wish to delete: 99
+Process 99 deleted to the Waiting queue.
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 2
+
+Contents of the Waiting Queue:
+Position:    [1]
+  PID:       9
+  Priority:  1
+  State:     waiting
+  PC:        0x1234
+  Job Time:  6
+Position:    [2]
+  PID:       10
+  Priority:  2
+  State:     waiting
+  PC:        0x2345
+  Job Time:  10
+Position:    [3]
+  PID:       11
+  Priority:  3
+  State:     waiting
+  PC:        0x3456
+  Job Time:  14
+Position:    [4]
+  PID:       12
+  Priority:  4
+  State:     waiting
+  PC:        0x4567
+  Job Time:  18
+End contents of the Waiting Queue.
+
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   0  -  Exit Operating System.
+> 0
+
+Quitting Operating System. Have a good day.
+
+Jasons-Macbook:  ~/Documents/SMU/Senior Year/Spring Semester 2016/Operating Systems/OS_Project  |master ✓|
+→ 
