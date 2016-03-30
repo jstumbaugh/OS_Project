@@ -5,11 +5,11 @@
 ###################################################################
 
 # makefile targets
-all : main.exe
+all : os.exe
 
-main.exe : main.cpp PCB.cpp queue.cpp scheduler.cpp
-		g++ main.cpp -std=c++11 -o main.exe
-		./main.exe
+os.exe : main.cpp PCB.cpp queue.cpp scheduler.cpp
+		g++ main.cpp -std=c++11 -o os.exe
+		./os.exe
 
 clean :
 		\rm -f *.exe *~

@@ -3,13 +3,14 @@
  * scheduler.cpp
  */
 
+#import <utility>
 #import "PCB.cpp"
 #import "queue.cpp"
 using namespace std;
 
 // Shortest Job First
 double sjf_scheduler(Queue ready, Queue waiting, bool display=false) {
-    int wait_time = 0;
+    double wait_time = 0;
     double len = ready.length();
     while (ready.length() > 0) {
         PCB shortest = ready[0];

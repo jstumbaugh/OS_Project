@@ -9,6 +9,7 @@
 #include <sstream>
 #include <regex>
 #include <ctype.h>
+#include <utility>
 #include "PCB.cpp"
 #include "queue.cpp"
 #include "scheduler.cpp"
@@ -39,7 +40,7 @@ PCB enter_process_info(string state="0") {
     }
     if (state == "0") {
         while (state != "ready" && state != "waiting" && state != "running" && state != "terminated") {
-            cout << "State (ready, waiting, running, terminated): ";
+            cout << "State (ready, waiting): ";//", running, terminated): ";
             cin >> state;
         }
     }
@@ -57,10 +58,10 @@ PCB enter_process_info(string state="0") {
 
 // The main worked method of the operating system
 int main() {
-    cout << "\n==========================================================\n";
-    cout << "|          CSE 7343: Operating Systems Project           |\n";
-    cout << "|                     Jason Stumbaugh                    |\n";
-    cout << "==========================================================\n";
+    cout << "\n===========================================================\n";
+    cout << "|           CSE 7343: Operating Systems Project           |\n";
+    cout << "|                     Jason Stumbaugh                     |\n";
+    cout << "===========================================================\n";
     int mode = -1;
     while (mode != 1 && mode != 2 && mode != 0) {
         cout << "\nPlease select an option:\n";
@@ -75,7 +76,7 @@ int main() {
     vector<PCB> terminated;
 
     if (mode == 1) { // Manually Enter Processes
-        cout << "\nManual Mode selected. Please enter in the processes:\n";
+        cout << "\nManual Mode selected. Please enter in the process information:\n";
 
         char entering_processes = 'y';
         while (entering_processes == 'y') {
@@ -93,6 +94,7 @@ int main() {
             // prompt user for another process to input
             cout << "\nEnter another process? (y/n): ";
             cin >> entering_processes;
+            cout << endl;
         }
     } else if (mode == 2) { // Read processes from text file
         cout << "\nPlease enter the name of .txt file to read processes from: ";
@@ -144,15 +146,15 @@ int main() {
             exit(1);
         }
     } else if (mode == 0) {
-        cout << "Quitting Operating System. Have a good day.\n";
-        exit(1);
+        cout << "\nQuitting Operating System. Have a good day.\n\n";
+        return 0;
     }
 
     // create queues based on processes
     Queue ready_queue("Ready", ready);
     Queue waiting_queue("Waiting", waiting);
-    Queue running_queue("Running", running);
-    Queue terminated_queue("terminated", terminated);
+    // Queue running_queue("Running", running);
+    // Queue terminated_queue("terminated", terminated);
 
     bool using_os = true;
     while (using_os) {
@@ -182,16 +184,19 @@ int main() {
                         break;
             case 2 :    waiting_queue.print();
                         break;
-            case 3 :    result = sjf_scheduler(ready_queue,waiting_queue);
-                        cout << "Shortest Job First Scheduler average wait time: " << result << endl;
+            case 3 :    cout << "\nRunning the Shortest Job First Scheduler.\n";
+                        result = sjf_scheduler(ready_queue,waiting_queue);
+                        cout << "\nShortest Job First Scheduler average wait time: " << result << endl;
                         break;
-            case 4 :    result = priority_scheduler(ready_queue, waiting_queue);
-                        cout << "Priority Scheduler average wait time: " << result << endl;
+            case 4 :    cout << "\nRunning the Priority Scheduler.\n";
+                        result = priority_scheduler(ready_queue, waiting_queue);
+                        cout << "\nPriority Scheduler average wait time: " << result << endl;
                         break;
             case 5 :    cout << "Please enter the Time Quantum to use: ";
                         cin >> q;
+                        cout << "\nRunning the Round Robin Scheduler.\n";
                         result = rr_scheduler(ready_queue, waiting_queue, q);
-                        cout << "\nRound Robin Scheduler average wait time: " << result << endl;
+                        cout << "\nRound Robin Scheduler (q = " << q << ") average wait time: " << result << endl;
                         break;
             case 6 :    cout << "Please enter the Time Quantum to use: ";
                         cin >> q;
@@ -203,7 +208,7 @@ int main() {
                         result2 = rr_scheduler(ready_queue, waiting_queue, q);
                         cout << "\n\nResults:\nShortest Job First Scheduler average wait time:    " << result << endl;
                         cout << "Priority Scheduler average wait time:              " << result1 << endl;
-                        cout << "Round Robin Scheduler average wait time:           " << result2 << endl;
+                        cout << "Round Robin Scheduler (q = " << q << ") average wait time:   " << result2 << endl;
                         break;
             case 7 :    cout << "Add PCB to which queue? (ready, waiting): ";
                         cin >> queue_selected;
@@ -228,13 +233,13 @@ int main() {
                         cin >> queue_selected;
                         if (queue_selected == "ready") {
                             ready_queue.print();
-                            cout << "\nPlease enter the PID of the process you wish to delete: ";
+                            cout << "\nPlease enter the PID of the PCB you wish to delete: ";
                             cin >> q;
                             ready_queue.delete_PCB(q);
                             break;
                         } else if (queue_selected == "waiting") {
                             waiting_queue.print();
-                            cout << "\nPlease enter the PID of the process you wish to delete: ";
+                            cout << "\nPlease enter the PID of the PCB you wish to delete: ";
                             cin >> q;
                             waiting_queue.delete_PCB(q);
                             break;
@@ -243,7 +248,8 @@ int main() {
                             break;
                         }
                         break;
-            case 0 :    using_os = false;
+            case 0 :    cout << "Quitting Operating System. Have a good day.\n";
+                        using_os = false;
                         break;
             default :   cout << "Please enter in a valid command.\n\n";
                         break;
