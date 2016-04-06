@@ -23,15 +23,16 @@ bool is_int(string word) {
     return is_number;
 }
 
+int current_PID = 0;
+int PID() {
+    current_PID += 1;
+    return current_PID;
+}
+
 // Prompt user for process information
 PCB enter_process_info(string state="0") {
-    string pid, priority, job_time, program_counter = "a";
-    while (true) {
-        cout << "Process ID (integer): ";
-        cin >> pid;
-        if (is_int(pid))
-            break;
-    }
+    string priority, job_time, program_counter = "a";
+    int pid = PID();
     while (true) {
         cout << "Priority (integer): ";
         cin >> priority;
@@ -52,7 +53,7 @@ PCB enter_process_info(string state="0") {
         if (is_int(job_time))
             break;
     }
-    PCB pcb(stoi(pid), stoi(priority), state, program_counter, stoi(job_time));
+    PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time));
     return pcb;
 }
 
@@ -113,8 +114,8 @@ int main() {
                 }
 
                 stringstream ss(line);
-                string pid, priority, job_time, state, program_counter;
-                ss >> pid;
+                string priority, job_time, state, program_counter;
+                int pid = PID();
                 ss >> priority;
                 ss >> state;
                 ss >> program_counter;
@@ -124,12 +125,11 @@ int main() {
                     job_time = "0";
                 // remove possible comments from inputs
                 regex regex(",");
-                pid = regex_replace(pid, regex, "");
                 priority = regex_replace(priority, regex, "");
                 job_time = regex_replace(job_time, regex, "");
                 state = regex_replace(state, regex, "");
                 program_counter = regex_replace(program_counter, regex, "");
-                PCB pcb(stoi(pid), stoi(priority), state, program_counter, stoi(job_time));
+                PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time));
                 // move PCB into correct queue
                 if (pcb.get_state() == "ready") {
                     ready.push_back(pcb);
@@ -214,15 +214,11 @@ int main() {
                         cin >> queue_selected;
                         if (queue_selected == "ready") {
                             pcb = enter_process_info("ready");
-                            cout << "Please enter the position you would like to add the PCB in the ready queue: ";
-                            cin >> q;
-                            ready_queue.push(pcb,q);
+                            ready_queue.push(pcb,ready_queue.length()+1);
                             break;
                         } else if (queue_selected == "waiting") {
                             pcb = enter_process_info("waiting");
-                            cout << "Please enter the position you would like to add the PCB in the waiting queue: ";
-                            cin >> q;
-                            waiting_queue.push(pcb,q);
+                            waiting_queue.push(pcb,waiting_queue.length()+1);
                             break;
                         } else {
                             cout << "Invalid queue name\n";
