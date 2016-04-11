@@ -5,6 +5,7 @@
 
 #import <iostream>
 #import <string>
+#import <ctime>
 
 using namespace std;
 
@@ -24,12 +25,14 @@ class PCB {
     void set_PC (string);
     int get_job_time();
     void set_job_time(int);
+    string get_arrival_time();
   private:
     int pid;
     int priority;
     int job_time;
     string state;
     string program_counter;
+    time_t arrival_time;
 };
 
 // Empty constructor
@@ -42,15 +45,17 @@ PCB::PCB(int id, int p, string st, string pc, int j=0) {
     state = st;
     program_counter = pc;
     j == 0 ? job_time = rand() % 20 + 1 : job_time = j;
+    arrival_time = time(0);
 }
 
 // this method will print the contents of the PCB
 void PCB::print() {
-    cout << "  PID:       " << pid << endl;
-    cout << "  Priority:  " << priority << endl;
-    cout << "  State:     " << state << endl;
-    cout << "  PC:        " << program_counter << endl;
-    cout << "  Job Time:  " << job_time << endl;
+    cout << "  PID:           " << pid << endl;
+    cout << "  Priority:      " << priority << endl;
+    cout << "  State:         " << state << endl;
+    cout << "  PC:            " << program_counter << endl;
+    cout << "  Job Time:      " << job_time << endl;
+    cout << "  Arrival Time:  " << get_arrival_time() << endl;
 }
 
 // Basic getters and setters for the attributes
@@ -92,4 +97,8 @@ int PCB::get_job_time() {
 
 void PCB::set_job_time(int j) {
     j < 0 ? job_time = 0 : job_time = j;
+}
+
+string PCB::get_arrival_time() {
+    return asctime(localtime(&arrival_time));
 }
