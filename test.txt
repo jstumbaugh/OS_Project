@@ -1,14 +1,14 @@
 # Layout:
-# Priority, State, ProgramCounter, Job Time
-1, ready, 0x1234, 15
-1, ready, 0x2345, 13
-2, ready, 0x3456, 5
-2, ready, 0x4567, 11
-3, ready, 0x5678, 9
-3, ready, 0x6789, 3
-4, ready, 0x7890, 19
-4, ready, 0x8901, 7
-1, waiting, 0x1234, 6
-2, waiting, 0x2345, 10
-3, waiting, 0x3456, 14
-4, waiting, 0x4567, 18
+# Priority, State, ProgramCounter, Job Time, How Long Needed
+1, ready, 0x1234, 15, 20
+1, ready, 0x2345, 13, 20
+2, ready, 0x3456, 5, 20
+2, ready, 0x4567, 11, 20
+3, ready, 0x5678, 9, 20
+3, ready, 0x6789, 3, 20
+4, ready, 0x7890, 19, 20
+4, ready, 0x8901, 7, 20
+1, waiting, 0x1234, 6, 20
+2, waiting, 0x2345, 10, 20
+3, waiting, 0x3456, 14, 20
+4, waiting, 0x4567, 18, 20

@@ -31,7 +31,7 @@ int PID() {
 
 // Prompt user for process information
 PCB enter_process_info(string state="0") {
-    string priority, job_time, program_counter = "a";
+    string priority, job_time, program_counter, hln = "a";
     int pid = PID();
     while (true) {
         cout << "Priority (integer): ";
@@ -53,7 +53,13 @@ PCB enter_process_info(string state="0") {
         if (is_int(job_time))
             break;
     }
-    PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time));
+    while (true) {
+        cout << "How Long Needed (integer): ";
+        cin >> hln;
+        if (is_int(hln))
+            break;
+    }
+    PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time), stoi(hln));
     return pcb;
 }
 
@@ -114,7 +120,7 @@ int main() {
                 }
 
                 stringstream ss(line);
-                string priority, job_time, state, program_counter;
+                string priority, job_time, state, program_counter, hln;
                 int pid = PID();
                 ss >> priority;
                 ss >> state;
@@ -123,13 +129,15 @@ int main() {
                     cout << "";
                 else
                     job_time = "0";
+                ss >> hln;
                 // remove possible comments from inputs
                 regex regex(",");
                 priority = regex_replace(priority, regex, "");
                 job_time = regex_replace(job_time, regex, "");
                 state = regex_replace(state, regex, "");
                 program_counter = regex_replace(program_counter, regex, "");
-                PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time));
+                hln = regex_replace(hln, regex, "");
+                PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time), stoi(hln));
                 // move PCB into correct queue
                 if (pcb.get_state() == "ready") {
                     ready.push_back(pcb);

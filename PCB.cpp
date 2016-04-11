@@ -12,7 +12,7 @@ using namespace std;
 class PCB {
   public:
     PCB();
-    PCB(int, int, string, string, int);
+    PCB(int, int, string, string, int, int);
     void print();
     // getters and setters
     int get_pid ();
@@ -26,6 +26,8 @@ class PCB {
     int get_job_time();
     void set_job_time(int);
     string get_arrival_time();
+    int get_how_long_needed();
+    void set_how_long_needed(int);
   private:
     int pid;
     int priority;
@@ -33,19 +35,21 @@ class PCB {
     string state;
     string program_counter;
     time_t arrival_time;
+    int how_long_needed;
 };
 
 // Empty constructor
 PCB::PCB() {}
 
 // Normal constructor
-PCB::PCB(int id, int p, string st, string pc, int j=0) {
+PCB::PCB(int id, int p, string st, string pc, int j=0, int hln=0) {
     pid = id;
     priority = p;
     state = st;
     program_counter = pc;
     j == 0 ? job_time = rand() % 20 + 1 : job_time = j;
     arrival_time = time(0);
+    hln == 0 ? how_long_needed = job_time : how_long_needed = hln;
 }
 
 // this method will print the contents of the PCB
@@ -55,7 +59,8 @@ void PCB::print() {
     cout << "  State:         " << state << endl;
     cout << "  PC:            " << program_counter << endl;
     cout << "  Job Time:      " << job_time << endl;
-    cout << "  Arrival Time:  " << get_arrival_time() << endl;
+    cout << "  Arrival Time:  " << get_arrival_time();
+    cout << "  Length Needed: " << how_long_needed << endl;
 }
 
 // Basic getters and setters for the attributes
@@ -101,4 +106,12 @@ void PCB::set_job_time(int j) {
 
 string PCB::get_arrival_time() {
     return asctime(localtime(&arrival_time));
+}
+
+int PCB::get_how_long_needed() {
+    return how_long_needed;
+}
+
+void PCB::set_how_long_needed(int hln) {
+    how_long_needed = hln;
 }
