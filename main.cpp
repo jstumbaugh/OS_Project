@@ -13,6 +13,7 @@
 #include "PCB.cpp"
 #include "queue.cpp"
 #include "scheduler.cpp"
+#include "MemoryManagement.cpp"
 
 using namespace std;
 
@@ -31,35 +32,48 @@ int PID() {
 
 // Prompt user for process information
 PCB enter_process_info(string state="0") {
-    string priority, job_time, program_counter, hln = "a";
-    int pid = PID();
-    while (true) {
-        cout << "Priority (integer): ";
-        cin >> priority;
-        if (is_int(priority))
-            break;
-    }
-    if (state == "0") {
-        while (state != "ready" && state != "waiting" && state != "running" && state != "terminated") {
-            cout << "State (ready, waiting): ";//", running, terminated): ";
-            cin >> state;
-        }
-    }
-    cout << "Program Counter Address: ";
-    cin >> program_counter;
-    while (true) {
-        cout << "Job Time (integer): ";
-        cin >> job_time;
-        if (is_int(job_time))
-            break;
-    }
-    while (true) {
-        cout << "How Long Needed (integer): ";
-        cin >> hln;
-        if (is_int(hln))
-            break;
-    }
-    PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time), stoi(hln));
+  // PHASE 1
+    // string priority, job_time, program_counter, hln = "a";
+    // int pid = PID();
+    // while (true) {
+    //     cout << "Priority (integer): ";
+    //     cin >> priority;
+    //     if (is_int(priority))
+    //         break;
+    // }
+    // if (state == "0") {
+    //     while (state != "ready" && state != "waiting" && state != "running" && state != "terminated") {
+    //         cout << "State (ready, waiting): ";//", running, terminated): ";
+    //         cin >> state;
+    //     }
+    // }
+    // cout << "Program Counter Address: ";
+    // cin >> program_counter;
+    // while (true) {
+    //     cout << "Job Time (integer): ";
+    //     cin >> job_time;
+    //     if (is_int(job_time))
+    //         break;
+    // }
+    // while (true) {
+    //     cout << "How Long Needed (integer): ";
+    //     cin >> hln;
+    //     if (is_int(hln))
+    //         break;
+    // }
+    // PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time), stoi(hln));
+    // return pcb;
+  // PHASE 2
+    string pid, arrival_time, duration, mem_size;
+    cout << "PID: ";
+    cin >> pid;
+    cout << "Arrival Time: ";
+    cin >> arrival_time;
+    cout << "Duration: ";
+    cin >> duration;
+    cout << "Memory Size: ";
+    cin >> mem_size;
+    PCB pcb(stoi(pid), stoi(arrival_time), stoi(duration), stoi(mem_size));
     return pcb;
 }
 
@@ -81,6 +95,7 @@ int main() {
     vector<PCB> waiting;
     vector<PCB> running;
     vector<PCB> terminated;
+    MemoryManagement mm, mm1, mm2;
 
     if (mode == 1) { // Manually Enter Processes
         cout << "\nManual Mode selected. Please enter in the process information:\n";
@@ -89,15 +104,18 @@ int main() {
         while (entering_processes == 'y') {
             PCB pcb = enter_process_info();
             // move PCB into correct queue
-            if (pcb.get_state() == "ready") {
-                ready.push_back(pcb);
-            } else if (pcb.get_state() == "waiting") {
-                waiting.push_back(pcb);
-            } else if (pcb.get_state() == "running") {
-                running.push_back(pcb);
-            } else if (pcb.get_state() == "terminated") {
-                terminated.push_back(pcb);
-            }
+          // PHASE 1
+            // if (pcb.get_state() == "ready") {
+            //     ready.push_back(pcb);
+            // } else if (pcb.get_state() == "waiting") {
+            //     waiting.push_back(pcb);
+            // } else if (pcb.get_state() == "running") {
+            //     running.push_back(pcb);
+            // } else if (pcb.get_state() == "terminated") {
+            //     terminated.push_back(pcb);
+            // }
+          // PHASE 2
+            ready.push_back(pcb);
             // prompt user for another process to input
             cout << "\nEnter another process? (y/n): ";
             cin >> entering_processes;
@@ -105,50 +123,84 @@ int main() {
         }
     } else if (mode == 2) { // Read processes from text file
         cout << "\nPlease enter the name of .txt file to read processes from: ";
-        string file_name;
-        cin >> file_name;
-        // string file_name = "test.txt";
-        // cout << endl;
+        // string file_name;
+        // cin >> file_name;
+        string file_name = "input.txt";
+        cout << endl;
 
         fstream file;
         file.open(file_name);
         if (file.is_open()){
-            string line;
-            while (getline(file, line)) {
-                if (line.at(0) == '#') { // ignore comments
-                    continue;
-                }
+            // PHASE 1
+            // string line;
+            // while (getline(file, line)) {
+            //     // if (line.at(0) == '#') { // ignore comments
+            //     //     continue;
+            //     // }
+            //
+            //     stringstream ss(line);
+            //     string priority, job_time, state, program_counter, hln;
+            //     int pid = PID();
+            //     ss >> priority;
+            //     ss >> state;
+            //     ss >> program_counter;
+            //     if (ss >> job_time)
+            //         cout << "";
+            //     else
+            //         job_time = "0";
+            //     ss >> hln;
+            //     // remove possible comments from inputs
+            //     regex regex(",");
+            //     priority = regex_replace(priority, regex, "");
+            //     job_time = regex_replace(job_time, regex, "");
+            //     state = regex_replace(state, regex, "");
+            //     program_counter = regex_replace(program_counter, regex, "");
+            //     hln = regex_replace(hln, regex, "");
+            //     PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time), stoi(hln));
+            //     // move PCB into correct queue
+            //     if (pcb.get_state() == "ready") {
+            //         ready.push_back(pcb);
+            //     } else if (pcb.get_state() == "waiting") {
+            //         waiting.push_back(pcb);
+            //     } else if (pcb.get_state() == "running") {
+            //         running.push_back(pcb);
+            //     } else if (pcb.get_state() == "terminated") {
+            //         terminated.push_back(pcb);
+            //     }
+            // }
 
+            // PHASE 2
+            string line;
+            getline(file, line);
+            int size_of_memory = stoi(line);
+            getline(file, line);
+            int number_of_available_spaces = stoi(line);
+            vector<int> starting_address;
+            vector<int> available_space;
+            string temp;
+            for (int i=0; i<number_of_available_spaces; i++) {
+                getline(file, line);
                 stringstream ss(line);
-                string priority, job_time, state, program_counter, hln;
-                int pid = PID();
-                ss >> priority;
-                ss >> state;
-                ss >> program_counter;
-                if (ss >> job_time)
-                    cout << "";
-                else
-                    job_time = "0";
-                ss >> hln;
-                // remove possible comments from inputs
-                regex regex(",");
-                priority = regex_replace(priority, regex, "");
-                job_time = regex_replace(job_time, regex, "");
-                state = regex_replace(state, regex, "");
-                program_counter = regex_replace(program_counter, regex, "");
-                hln = regex_replace(hln, regex, "");
-                PCB pcb(pid, stoi(priority), state, program_counter, stoi(job_time), stoi(hln));
-                // move PCB into correct queue
-                if (pcb.get_state() == "ready") {
-                    ready.push_back(pcb);
-                } else if (pcb.get_state() == "waiting") {
-                    waiting.push_back(pcb);
-                } else if (pcb.get_state() == "running") {
-                    running.push_back(pcb);
-                } else if (pcb.get_state() == "terminated") {
-                    terminated.push_back(pcb);
-                }
+                ss >> temp;
+                starting_address.push_back(stoi(temp));
+                ss >> temp;
+                available_space.push_back(stoi(temp));
             }
+            getline(file, line);
+            int number_processes = stoi(line);
+            for (int i=0; i<number_processes; i++) {
+                getline(file, line);
+                stringstream ss(line);
+                string pid, arrival_time, duration, p_mem_size;
+                ss >> pid;
+                ss >> arrival_time;
+                ss >> duration;
+                ss >> p_mem_size;
+                ready.push_back(PCB(stoi(pid), stoi(arrival_time), stoi(duration), stoi(p_mem_size)));
+            }
+            mm = MemoryManagement(size_of_memory, starting_address, available_space, number_processes, ready);
+            mm1 = MemoryManagement(size_of_memory, starting_address, available_space, number_processes, ready);
+            mm2 = MemoryManagement(size_of_memory, starting_address, available_space, number_processes, ready);
         } else {
             cerr << "Error opening " << file_name << endl;
             exit(1);
@@ -177,6 +229,7 @@ int main() {
         cout << "   6  -  Run all of the schedulers on the Ready queue.\n";
         cout << "   7  -  Add PCB to a given queue.\n";
         cout << "   8  -  Delete PCB from given queue.\n";
+        cout << "   9  -  Phase 2: Run First Fit, Best Fit, and Worst Fit algorithms.\n";
         cout << "   0  -  Exit Operating System.\n";
 
         int input;
@@ -251,6 +304,14 @@ int main() {
                             cout << "Invaild queue name.\n";
                             break;
                         }
+                        break;
+            case 9 :    cout << "Phase 2 of OS Project\n";
+                        mm.FirstFit();
+                        cout << endl;
+                        mm1.BestFit();
+                        cout << endl;
+                        mm2.WorstFit();
+                        cout << endl;
                         break;
             case 0 :    cout << "Quitting Operating System. Have a good day.\n";
                         using_os = false;
