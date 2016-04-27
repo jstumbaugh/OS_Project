@@ -68,8 +68,9 @@ void MemoryManagement::FirstFit() {
     }
     if (blocked_processes.size() == 0)
         cout << "None";
-        cout << "\nMemory Utilization:     " << assigned_memory << "/" << memory_size << " = " << assigned_memory / memory_size * 100 << "\%" << endl;
-        cout << "Blocking Probability:   " << processes_assigned << "/" << number_processes << " = " << processes_assigned / number_processes * 100 << "\%" << endl;
+        
+    cout << "\nMemory Utilization:     " << assigned_memory << "/" << memory_size << " = " << assigned_memory / memory_size * 100 << "\%" << endl;
+    cout << "Blocking Probability:   1 - (" << processes_assigned << "/" << number_processes << ") = " << (1 - processes_assigned / number_processes) * 100 << "\%" << endl;
 }
 
 void MemoryManagement::BestFit() {
@@ -109,7 +110,7 @@ void MemoryManagement::BestFit() {
     if (blocked_processes.size() == 0)
         cout << "None";
     cout << "\nMemory Utilization:     " << assigned_memory << "/" << memory_size << " = " << assigned_memory / memory_size * 100 << "\%" << endl;
-    cout << "Blocking Probability:   " << processes_assigned << "/" << number_processes << " = " << processes_assigned / number_processes * 100 << "\%" << endl;
+    cout << "Blocking Probability:   1 - (" << processes_assigned << "/" << number_processes << ") = " << (1 - processes_assigned / number_processes) * 100 << "\%" << endl;
 }
 
 void MemoryManagement::WorstFit() {
@@ -149,5 +150,5 @@ void MemoryManagement::WorstFit() {
     if (blocked_processes.size() == 0)
         cout << "None";
         cout << "\nMemory Utilization:     " << assigned_memory << "/" << memory_size << " = " << assigned_memory / memory_size * 100 << "\%" << endl;
-        cout << "Blocking Probability:   " << processes_assigned << "/" << number_processes << " = " << processes_assigned / number_processes * 100 << "\%" << endl;
+        cout << "Blocking Probability:   1 - (" << processes_assigned << "/" << number_processes << ") = " << (1 - processes_assigned / number_processes) * 100 << "\%" << endl;
 }
