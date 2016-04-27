@@ -1,0 +1,73 @@
+Jasons-Macbook:  ~/Documents/SMU/Senior Year/Spring Semester 2016/Operating Systems/OS_project  |master ✓|
+→ make
+g++ main.cpp -std=c++11 -o os.exe
+
+Jasons-Macbook:  ~/Documents/SMU/Senior Year/Spring Semester 2016/Operating Systems/OS_project  |master ✓|
+→ ./os.exe
+
+===========================================================
+|           CSE 7343: Operating Systems Project           |
+|                     Jason Stumbaugh                     |
+===========================================================
+
+Please select an option:
+   1  -  Manually Enter Processes.
+   2  -  Read Processes in from text file.
+   0  -  Exit Operating System.
+> 2
+
+Please enter the name of .txt file to read processes from: input.txt
+Added Process 1 to the Ready queue.
+Added Process 2 to the Ready queue.
+Added Process 3 to the Ready queue.
+Added Process 4 to the Ready queue.
+Added Process 5 to the Ready queue.
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   9  -  Phase 2: Run First Fit, Best Fit, and Worst Fit algorithms.
+   0  -  Exit Operating System.
+> 9
+
+Phase 2 of OS Project
+
+Algorithm:              First Fit
+Assigned Processes:     1, 200, 115;  2, 600, 500;  3, 2500, 358;  4, 1400, 200;  5, 2858, 375;
+Blocked Processes:      None
+Memory Utilization:     1548/4000 = 38.7%
+Blocking Probability:   1 - (5/5) = 0%
+
+Algorithm:              Best Fit
+Assigned Processes:     1, 3500, 115;  2, 600, 500;  3, 2500, 358;  4, 2000, 200;  5, 2858, 375;
+Blocked Processes:      None
+Memory Utilization:     1548/4000 = 38.7%
+Blocking Probability:   1 - (5/5) = 0%
+
+Algorithm:              Worst Fit
+Assigned Processes:     1, 2500, 115;  2, 2615, 500;  3, 600, 358;  4, 1400, 200;
+Blocked Processes:      5,
+Memory Utilization:     1173/4000 = 29.325%
+Blocking Probability:   1 - (4/5) = 20%
+
+
+Please select an option:
+   1  -  Print contents of Ready Queue.
+   2  -  Print contents of Waiting Queue.
+   3  -  Run the Shortest Job First Scheduler on the Ready queue.
+   4  -  Run the Priority Scheduler on the Ready queue.
+   5  -  Run the Round Robin Scheduler on the Ready queue.
+   6  -  Run all of the schedulers on the Ready queue.
+   7  -  Add PCB to a given queue.
+   8  -  Delete PCB from given queue.
+   9  -  Phase 2: Run First Fit, Best Fit, and Worst Fit algorithms.
+   0  -  Exit Operating System.
+> 0
+
+Quitting Operating System. Have a good day.
