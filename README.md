@@ -68,7 +68,8 @@ Job Time         - time it takes to complete the process
 #### Scheduler Information
 Three schedulers are implemented in this operating system: Shortest Job First, Priority, and Round-Robin. They are all implemented in their own methods in `scheduler.cpp` The Shortest Job First scheduler takes the ready queue, orders the PCBs from shortest job time to longest, processes each PCB in that order, and returns the average wait time of each process. The Priority scheduler takes the ready queue, orders the PCBs from highest priority (1) to lowest (4), processes each PCB in that order, and returns the average wait time of each process. The Round Robin scheduler takes the ready queue and a time quantum Q. The scheduler goes down the ready queue allowing each process a time period Q to perform its computations. Each time, the PCB's job time is decremented the length of the time quantum Q. Once a PCB's job time reaches 0, it is removed from the ready queue. Once the scheduler is completed, it returns the average wait time of each process.
 
-#### PCB File Expected Format
+### Phase 1 Information
+##### PCB File Expected Format
 Upon selecting the mode where you read in the process information from a text file, the OS is set up to receive a specific format. It is as follows:
 ```
 # ID, Priority, State, ProgramCounter, Job Time
@@ -76,6 +77,42 @@ Upon selecting the mode where you read in the process information from a text fi
 2, 4, waiting, 0x4321, 10
 ```
 Lines beginning with a pound sign `#` will be ignored as comments. Each attribute of the PCB can be separated by either a comma or a space. Each line is expected to be a different PCB. See the `test.txt` file as an example.
+
+### Phase 2 Information
+##### Input File Expected Format
+```
+Size_of_memory
+Number_of_available spaces
+starting_address_1, available_space_1
+starting_address_2,  available_space_2
+…….
+starting_address_N, available_space_N
+number_of_processes
+pid, arrival_time, duration, size_of_memory
+pid, arrival_time, duration, size_of_memory
+…………
+…………
+pid, arrival_time, duration, size_of_memory
+
+
+EX.
+input.txt
+4000
+ 6 /* number available spaces */
+200, 300
+600, 600
+1400, 350
+2000, 200
+2500, 750
+3500, 125
+5 /* number of processes */
+1, 0, 10, 115
+2, 0, 10, 500
+3, 0, 10, 358
+4, 0, 10, 200
+5, 0, 10, 375
+
+```
 
 
 #### Dependencies
