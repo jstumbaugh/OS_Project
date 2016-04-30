@@ -48,7 +48,8 @@ Please select an option:
    5  -  Run the Round Robin Scheduler on the Ready queue.
    6  -  Run all of the schedulers on the Ready queue.
    7  -  Add PCB to a given queue.
-   8  -  Delete PCB from given queue.
+   8  -  Delete PCB from given queue.   
+   9  -  Phase 2: Run First Fit, Best Fit, and Worst Fit algorithms.
    0  -  Exit Operating System.
 >
 ```
@@ -98,7 +99,7 @@ pid, arrival_time, duration, size_of_memory
 EX.
 input.txt
 4000
- 6 /* number available spaces */
+6 /* number available spaces */
 200, 300
 600, 600
 1400, 350
