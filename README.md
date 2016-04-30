@@ -115,6 +115,7 @@ input.txt
 
 ```
 
+See `sample_os_output_phase2` for an example of how to run the operating system.
 
 #### Dependencies
 g++
